@@ -15,9 +15,6 @@
 # limitations under the License.
 #
 
-
-
-
 import wsgiref.handlers
 import sys
 
@@ -52,34 +49,39 @@ class MainHandler(webapp.RequestHandler):
     else:
       self.redirect(users.create_login_url(self.request.uri))
 
-class NewBlogHandler(HelloBlog):
-  
+class NewBlogHandler(HelloBlog):  
   def get(self):
-    self.response.headers['Content-type']='text/html'
-    self.template_values={
-      'Categories':Category.all().fetch(1000)
-      }
-    self.render('templates/new_blog.html')
+    if self.check_login(users.create_login_url(self.request.uri)):
+      self.response.headers['Content-type']='text/html'
+      self.template_values={
+        'Categories':Category.all().fetch(1000)
+        }
+      self.render('templates/new_blog.html')
+       
 
   def post(self):
-    _title=self.param('title')
-    _content=db.Text(self.param('content'))
-    _category_id=self.param('category_id')
-    _category=Category.get(_category_id)
-    _blog=Blog(
-      title=_title,
-      content=_content,
-      category=_category
-      )
-    _blog.put()
+    if self.check_login(users.create_login_url(self.request.uri)):
+      _title=self.param('title')
+      _content=db.Text(self.param('content'))
+      _category_id=self.param('category_id')
+      _category=Category.get(_category_id)
+      _blog=Blog(
+        title=_title,
+        content=_content,
+        category=_category,
+        author=users.get_current_user()
+        )
+      _blog.put()
 
-    self.redirect('/')
+      self.redirect('/')
 
 class DeleteBlog(HelloBlog):
   def get(self):
     self.response.headers['Content-type']='text/html'
     self.response.out.write('Delete Blog')
 
+
+#Blog Show Function
 class ListBlog(HelloBlog):
   def get(self):
     Blogs=Blog.all().order('-date')
@@ -108,18 +110,20 @@ class ItemBlog(HelloBlog):
     
 class NewCategory(HelloBlog):
   def get(self):
-    self.render('templates/new_category.html',{})
+    if self.check_admin(users.create_login_url(self.request.uri)):
+      self.render('templates/new_category.html',{})
 
   def post(self):
-    cat_name=self.param('cat_name')
+    if self.check_admin(users.create_login_url(self.request.uri)):
+      cat_name=self.param('cat_name')
 
-    category=Category(name=cat_name)
+      category=Category(name=cat_name)
 
-    category.put()
-    if category.is_saved():
-      self.redirect('/')
-    else:
-      self.write('Save Error!')
+      category.put()
+      if category.is_saved():
+        self.redirect('/')
+      else:
+        self.write('Save Error!')
 
 
 class ListCategory(HelloBlog):
@@ -142,20 +146,25 @@ class RssBlog(HelloBlog):
 
 class NewComment(HelloBlog):
   def post(self):
-    _blog_id=self.param('blog_id')
-    _detail=self.param('detail')
-    _blog=Blog.get(_blog_id)
+    if self.check_login(users.create_login_url(self.request.uri)):
+      _blog_id=self.param('blog_id')
+      _detail=self.param('detail')
+      _blog=Blog.get(_blog_id)
 
-    if _blog==None:
-      self.write('Blog not find')
-    else:
-      _comment=Comment(
-        blog=_blog,
-        detail=_detail
-        )
-      _comment.put()
+      if _blog==None:
+        self.write('Blog not find')
+      else:
+        _comment=Comment(
+          blog=_blog,
+          detail=_detail,
+          author=users.get_current_user()
+          )
+        _comment.put()
 
-      self.redirect('/blog/show/%s' % (_blog_id))
+        self.redirect('/blog/show/%s' % (_blog_id))
+
+  def get(self):
+    self.redirect('/')
     
 def main():
   application = webapp.WSGIApplication([

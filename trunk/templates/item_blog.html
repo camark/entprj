@@ -9,6 +9,7 @@
 	
 <font color=Red>Comments</font>
 {% for comment in comments %}
+<p> {{ comment.author }} publish at {{ comment.date }}:<br/>
 <p>{{ comment.detail }}
 {% endfor %}
 
