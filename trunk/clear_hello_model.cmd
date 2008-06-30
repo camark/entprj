@@ -1,0 +1,1 @@
+c:\python25\python ../google_appengine/dev_appserver.py -c ../hello2

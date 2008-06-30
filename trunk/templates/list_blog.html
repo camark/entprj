@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+<a href='/blog/new'>New Blog</a>&nbsp;&nbsp;<a href='/category/new'>New Category</a>
+{% for blog in Blogs %}
+<h3> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h3>
+<h5> Category:{{ blog.category.name }} Publish Date: {{ blog.date }}
+<hr>
+<p>{{ blog.content }}
+{% endfor %}
+{% endblock %}

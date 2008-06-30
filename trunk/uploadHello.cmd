@@ -1,0 +1,1 @@
+c:\python25\python ../google_appengine/appcfg.py update ../hello2
