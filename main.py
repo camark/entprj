@@ -90,7 +90,9 @@ class ListBlog(HelloBlog):
     if Blogs.count()>0:
       self.template_values={
         'Blogs':Blogs,
-        'Categories':Categories
+        'Categories':Categories,
+        'is_logined':self.is_login,
+        'is_admin':self.is_admin
         }
       self.render('templates/list_blog.html')
     else:
