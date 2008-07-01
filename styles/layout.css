@@ -1,11 +1,22 @@
-#content {
-	align:center
+
+body {
+	text-align: center;
+}
+#wrapper {
+	width: 720px;
+	margin: 0 auto;
+	text-align:left;	
+}
+#maincontent {
+	float:right;
+	width:520px;
 }
 
 #sidebar {
+	width:180px;
 	float:left
 }
 
 #footer {
 	clear:both
-}
+

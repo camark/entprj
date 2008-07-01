@@ -1,4 +1,11 @@
 {% extends "base_generic.html" %}
+{% block sidebar %}
+<ul id="cats">
+{% for cat in Categories %}
+  <li>{{ cat.name }} </li>
+{% endfor %}
+</ul>
+{% endblock %}
 {% block content %}
 
 <a href='/blog/new'>New Blog</a>&nbsp;&nbsp;<a href='/category/new'>New Category</a>

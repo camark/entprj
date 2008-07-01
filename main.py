@@ -85,10 +85,12 @@ class DeleteBlog(HelloBlog):
 class ListBlog(HelloBlog):
   def get(self):
     Blogs=Blog.all().order('-date')
-
+    Categories=Category.all()
+    
     if Blogs.count()>0:
       self.template_values={
-        'Blogs':Blogs
+        'Blogs':Blogs,
+        'Categories':Categories
         }
       self.render('templates/list_blog.html')
     else:
