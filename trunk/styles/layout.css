@@ -1,3 +1,11 @@
-.content {
+#content {
 	align:center
+}
+
+#sidebar {
+	float:left
+}
+
+#footer {
+	clear:both
 }
