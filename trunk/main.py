@@ -86,10 +86,12 @@ class ListBlog(HelloBlog):
   def get(self):
     Blogs=Blog.all().order('-date')
     Categories=Category.all()
+    Recent_Blogs=Blog.all().order('-date').fetch(5)    
     
     if Blogs.count()>0:
       self.template_values={
         'Blogs':Blogs,
+        'recent_blogs':Recent_Blogs,
         'Categories':Categories,
         'is_logined':self.is_login,
         'is_admin':self.is_admin
@@ -103,12 +105,16 @@ class ItemBlog(HelloBlog):
     url=self.request.path
     _blog_id=url[11:]
     _blog=Blog.get(_blog_id)
+    Categories=Category.all()
+    Recent_Blogs=Blog.all().order('-date').fetch(5)
 
     _comments=_blog.comments
 
     self.template_values={
       'blog':_blog,
-      'comments':_comments
+      'comments':_comments,
+      'recent_blogs':Recent_Blogs,
+      'Categories':Categories,
       }
     self.render('templates/item_blog.html')
     
@@ -169,6 +175,10 @@ class NewComment(HelloBlog):
 
   def get(self):
     self.redirect('/')
+
+class AboutMe(HelloBlog):
+  def get(self):
+    self.render('templates/about_me.html',{})
     
 def main():
   application = webapp.WSGIApplication([
@@ -176,6 +186,7 @@ def main():
     ('/blog/new',NewBlogHandler),
     ('/blog/delete',DeleteBlog),
     ('/blog/show/.*',ItemBlog),
+    ('/blog/aboutme',AboutMe),
     ('/category/new',NewCategory),
     ('/category/list',ListCategory),
     ('/comment/new',NewComment),
