@@ -58,9 +58,10 @@ class NewCategory(HelloBlog):
 
       category.put()
       if category.is_saved():
-        self.redirect('/')
+        self.redirect('/admin/category/list')
       else:
         self.write('Save Error!')
+        
 class ListCategory(HelloBlog):
   def get(self):
     cats=Category.all().fetch(50)
@@ -69,7 +70,13 @@ class ListCategory(HelloBlog):
       }
     self.render('templates/admin/list_category.html')
 
+class DeleteCategory(HelloBlog):
+  def get(self):
+    url=self.request.path
+    _blog_id=url[23:]
 
+    self.write(_blog_id)
+    
 class BlogAdmin(HelloBlog):
     def get(self):
         if self.check_login(users.create_login_url(self.request.uri)):
@@ -82,6 +89,7 @@ def main():
     ('/admin', BlogAdmin),
     ('/admin/blog/new',NewBlogHandler),
     ('/admin/blog/delete',DeleteBlog),
+    ('/admin/category/delete/.*',DeleteCategory),
     ('/admin/category/new',NewCategory),
     ('/admin/category/list',ListCategory)
     ],
