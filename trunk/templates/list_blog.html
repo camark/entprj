@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% block sidebar %}
+<h2>Category</h2>
 <ul id="cats">
 {% for cat in Categories %}
   <li>{{ cat.name }} </li>
@@ -10,9 +11,15 @@
 
 {% if is_logined %}<a href='/blog/new'>New Blog</a> {% endif %} &nbsp;&nbsp;{% if is_admin %}<a href='/category/new'>New Category</a>{% endif %}
 {% for blog in Blogs %}
-<h3> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h3>
-<h5> Category:{{ blog.category.name }}&nbsp;&nbsp; {{blog.author}} Published at: {{ blog.date }}
-<hr>
-<p>{{ blog.content }}
+<div class="post">
+	<div class="post-title">
+		<h2> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h2>
+		<span class="post-dates">Published at: {{ blog.date }} by {{blog.author}}</span>
+		<!--<span class="post-comments">Category:{{ blog.category.name }}</span>  -->
+	</div>
+	<div class="entry">
+		<p>{{ blog.content }}
+	</div>
+</div>	
 {% endfor %}
 {% endblock %}

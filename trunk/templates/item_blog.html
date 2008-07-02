@@ -1,11 +1,15 @@
 {% extends "base_generic.html" %}
 {% block content %}
-
-<a href='/'>Home</a>
-<h3> {{ blog.title }} </a></h3>
-<h5> Category:{{ blog.category.name }} Publish Date: {{ blog.date }}
-<hr>
-<p>{{ blog.content }}<br>
+<div class="post">
+	<div class="post-title">
+		<h2> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h2>
+		<span class="post-dates">Published at: {{ blog.date }} by {{blog.author}}</span>
+		<!--<span class="post-comments">Category:{{ blog.category.name }}</span>  -->
+	</div>
+	<div class="entry">
+		<p>{{ blog.content }}
+	</div>
+</div>	
 	
 <font color=Red>Comments</font>
 {% for comment in comments %}

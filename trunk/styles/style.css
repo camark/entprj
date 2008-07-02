@@ -1,0 +1,228 @@
+/*
+
+Theme Name: Basic
+
+Theme URI: http://www.themelab.com/free-wordpress-themes/
+
+Description: A nice basic theme.  Visit <a href="http://www.themelab.com">Theme Lab</a> for more free WordPress themes.
+
+Version: 1.0
+
+Author: Theme Lab
+
+Author URI: http://www.themelab.com/
+Catalog: 双栏，推荐
+*/
+
+
+
+/*  
+
+Basic Wordpress By Ben Swift - Screen stylesheet. Made alphebatized by Lonnie Lee Best's FormatCSS - [http://www.lonniebest.com/FormatCSS/]
+
+*/
+
+
+
+/* HTML styling */
+
+
+
+a { color: #CC6600; text-decoration: none; }
+
+a.mini-add-comment { background: url(images/mini-down-arrow.gif) no-repeat; float: right; padding-left: 18px; }
+
+span.next-entries { background: url(images/mini-nav-right.gif) no-repeat right center; display: block; float: right; padding-right: 18px; text-align: right; width: 225px; }
+
+a.post-calendar { background: url(images/mini-calendar.gif) no-repeat; color: #999999; float: right; font-size: 95%; padding-left: 20px; }
+
+span.post-dates { background: url(images/date.gif) no-repeat; float: left; font-size: 95%; padding-left: 20px; padding-right: 10px; }
+
+span.post-cat { background: url(images/mini-category.gif) no-repeat; float: left; font-size: 95%; padding-left: 20px; }
+
+span.post-comments { background: url(images/mini-comments.gif) no-repeat; float: right; font-size: 95%; padding-left: 20px; }
+
+span.previous-entries { background: url(images/mini-nav-left.gif) no-repeat left center; display: block; float: left; padding-left: 18px; width: 228px; }
+
+a:hover { color: #FF6600; text-decoration: none; }
+
+a:visited { color: #CC6633; text-decoration: none; }
+
+body { background-color: #27343c; font: 80%/150% Arial, Helvetica, sans-serif; padding: 0px; }
+
+form { margin: 0px; padding: 0px; }
+
+h1 { background: url(images/header-icon.gif) no-repeat; color: #c9eefe; font: lighter 36px/150% Arial, Helvetica, sans-serif; height: 60px; margin: 0px; }
+
+h1 a, h1 a:visited { color: #c9eefe; text-decoration: none; }
+
+h1 a:hover { color: #ffffff; text-decoration: none; }
+
+h2 { border-bottom: 1px dotted #CCCCCC; color: #94b3c5; font: lighter 18px Arial, Helvetica, sans-serif; letter-spacing: -1px; margin: 0px 0px 2px; padding-bottom: 3px; }
+
+h2 a, h2 a:visited { color: #0d1216; text-decoration: none; }
+
+h2 a:hover { color: #0099cc; text-decoration: none; }
+
+h3 { color: #758d38; font: normal 140%/100% Arial, Helvetica, sans-serif; margin: 10px 0px 5px; }
+
+h4 { color: #758d38; font: normal 130%/100% Arial, Helvetica, sans-serif; margin: 10px 0px 5px; }
+
+hr.clear { clear: both; margin: 0px; padding: 0px; visibility: hidden; }
+
+img.alignleft, img[align="left"] { float: left; margin: 2px 10px 5px 0px; }
+
+img.alignright, img[align="right"] { float: right; margin: 2px 0px 5px 10px; }
+
+img.center, img[align="center"] { display: block; margin-left: auto; margin-right: auto; }
+
+p { margin: 0px; padding: 0px 0px 15px; }
+
+
+
+/* Div's and layout */
+
+
+
+#commentform { font: 110% Arial, Helvetica, sans-serif; margin-top: 10px; }
+
+#commentform input[type='submit'] { background: url(images/btn-bg.gif) no-repeat; border: none; color: #FFFFFF; cursor: pointer; float: right; font: bold 12px Arial, Helvetica, sans-serif; height: 20px; width: 100px; }
+
+#commentform input[type='text'] { background-color: #ffffff; border: 1px solid #cccccc; margin-top: 3px; padding: 3px; width: 200px; }
+
+#commentform label { color: #262626; font-size: 87%; }
+
+#commentform p { margin: 0px; padding: 6px 0px; }
+
+#commentform textarea { background-color: #ffffff; border: 1px solid #cccccc; height: 115px; margin-top: 3px; padding: 2px; width: 478px; }
+
+#commentform textarea:focus, #commentform input[type="text"]:focus { background: #ffffff; }
+
+#comments, #respond { border-bottom: 1px dotted #CCCCCC; clear: both; padding: 10px 0 5px 0; }
+
+#content { float: left; padding: 0px 10px 0px 20px; width: 490px; }
+
+#credits { color: #7a9299; font-size: 12px; height: 15px; line-height: 120%; margin: 0px auto; padding-bottom: 3px; width: 768px; }
+
+#credits a, #credit a:visited { color: #048db4; }
+
+#footer { clear: both; color: #ACD7EE; font-size: 12px; line-height: 130%; margin-left: auto; margin-right: auto; padding-bottom: 10px; text-align: left; width: 768px; }
+
+#footer a strong { color: #FFFFFF; }
+
+#footer a, #footer a:visited { color: #ACD7EE; }
+
+#footer a:hover { color: #FFFFFF; }
+
+#footer h4 { font: normal 146%/100% Arial, Helvetica, sans-serif; margin: 10px 0px 5px; }
+
+#footer li a { display: block; }
+
+#footer_bg { background: url(images/footer.jpg) no-repeat; height: 72px; width: 768px; }
+
+#header { background: url(images/header.jpg) no-repeat; height: 40px; margin-left: auto; margin-right: auto; margin-top: 15px; width: 768px; }
+
+#logo { background: url(images/logo.jpg) no-repeat; margin: 15px auto 0px; width: 768px; }
+
+#logo p { color: #FFFFFF; font-size: 150%; line-height: 200%; padding: 0px; }
+
+#nav { clear: both; float: right; list-style: none; margin: 0px 10px 0 0; }
+
+#nav a { border-bottom: 3px solid #FFFFFF; color: #FFFFFF; display: block; float: left; font: 12px/100% Arial, Helvetica, sans-serif; height: 32px; line-height: 32px; margin-right: 3px; text-decoration: none; vertical-align: middle; padding: 0 10px; }
+
+#nav a:hover { border-bottom: 3px solid #0099CC; color: #0099CC; }
+
+#nav li { display: inline; height: 30px; list-style: none; }
+
+#nav ul { margin: 0px; padding: 0px; }
+
+#page { background: url(images/content.jpg) repeat-y left top; margin: 0px auto; width: 768px; }
+
+#searchform { margin: 15px 0 0; }
+
+#searchform #s { background: #fff; border: 1px solid #cccccc; color: #000000; cursor: pointer; font-weight: normal; height: 19px; line-height: 19px; margin-right: 2px; padding: 0px 5px 0px 5px; vertical-align: middle; width: 135px; }
+
+#searchform br { display: none; }
+
+#searchform input { background: url(images/search-btn-bg.gif) no-repeat; border: none; color: #FFFFFF; font: bold 11px Arial, Helvetica, sans-serif; height: 20px; line-height: 20px; vertical-align: middle; width: 52px; }
+
+#sidebar { color: #666666; float: right; padding: 0px 10px 20px 10px; width: 220px; }
+
+#sidebar a, #sidebar a:visited { color: #5c9699; display: block; text-decoration: none; }
+
+#sidebar a:hover { color: #73a714; display: block; text-decoration: none; }
+
+#sidebar h2, #sidebar .sidebartitle { border-bottom: 1px dotted #CCCCCC; color: #73a714; font: lighter 18px Arial, Helvetica, sans-serif; margin: 20px 0px 2px; }
+
+#sidebar ul { margin: 0; padding: 0; }
+
+#sidebar ul li { border: none; border-bottom: 1px dotted #CCCCCC; list-style: none; margin: 0; padding: 2px 0; }
+
+#sidebar ul li ul { margin: 0; padding: 0; }
+
+#sidebar ul li ul li { border-bottom: 1px dotted #CCCCCC; padding: 2px 0 2px 0px; }
+
+#sidebar ul li ul li ul li { border: none; padding: 1px 0 1px 10px; }
+
+
+
+/* Classes and other stuff */
+
+
+
+.alignleft { float: left; }
+
+.alignright { float: right; }
+
+.center { text-align: center; }
+
+.clear { clear: both; }
+
+.commentlist { line-height: 130%; margin: 10px 0px; padding-left: 20px; }
+
+.commentlist .alt { }
+
+.commentlist cite { color: #CC6600; font-size: 120%; font-style: normal; font-weight: bold; }
+
+.commentlist cite a, .commentlist cite a:visited { color: #CC6600; }
+
+.commentlist li { padding: 5px 10px; }
+
+.commentlist small { display: block; font-size: 87%; margin-bottom: 5px; }
+
+.entry { clear: both; padding-top: 10px; }
+
+.error { color: red; }
+
+.footer-about { float: right; padding-left: 10px; padding-right: 10px; width: 210px; }
+
+.footer-recent-comments { float: left; margin-left: 10px; width: 240px; }
+
+.footer-recent-comments ul { list-style: none; margin: 0px; padding: 0px; }
+
+.footer-recent-comments ul li { background: url(images/mini-footer-comments.gif) no-repeat; padding: 0px 0px 10px 20px; }
+
+.footer-recent-posts { float: left; margin-left: 10px; width: 240px; }
+
+.footer-recent-posts strong { font-size: 107%; font-weight: bold; line-height: 135%; }
+
+.footer-recent-posts ul { font-size: 12px; line-height: 110%; list-style: none; margin: 0px; padding: 0px; }
+
+.footer-recent-posts ul li { background: url(images/mini-footer-post.gif) no-repeat; padding: 0px 0px 10px 20px; }
+
+.loginout { background: url(images/mini-loginout.gif) no-repeat left center; margin-left: 8px; padding-bottom: 2px; padding-left: 18px; }
+
+.navigation { clear: both; height: 15px; padding: 10px 0px; }
+
+.post { clear: both; padding-top: 15px;}
+
+.post-date { background: url(images/date-bg.gif) no-repeat; float: left; height: 49px; width: 45px; }
+
+.post-day { color: #999999; display: block; font-size: 18px; line-height: 18px; margin-left: -3px; padding-top: 7px; text-align: center; text-transform: uppercase; }
+
+.post-month { color: #FFFFFF; display: block; font-size: 12px; line-height: 11px; margin-left: -3px; padding-top: 2px; text-align: center; text-transform: uppercase; }
+
+.post-title { float: left; margin-left: 0px; width: 496px; }
+
+.rss { background: url(images/mini-rss.gif) no-repeat left center; margin-left: 8px; padding-bottom: 2px; padding-left: 18px; }
+
