@@ -1,5 +1,13 @@
+{% extends "../admin_base.html" %}
+{% block content %}
 <ul>
 	{% for cat in Categories %}
-  <li>{{ cat.name }}</li>
+  <li>{{ cat.name }} <a href='/admin/category/delete/{{ cat.key }}'>Delete</a></li>
 	{% endfor %}
 </ul>
+
+<form action='/admin/category/new' method=post>
+	<label for='cat_name'>Category name:</label><input type=text name='cat_name'><br>
+	<input type=submit value='Save'>
+</form>
+{% endblock content %}
