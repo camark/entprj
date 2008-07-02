@@ -1,0 +1,53 @@
+{% extends "../admin_base.html" %}
+{% block content %}
+ <script type="text/javascript" src="/scripts/fckeditor20/fckeditor.js"></script>
+<script type="text/javascript">
+     <!--
+     function showFCK(){
+      var oFCKeditor = new FCKeditor( 'contents' ) ;
+      oFCKeditor.BasePath = '/scripts/fckeditor20/' ;
+      oFCKeditor.ToolbarSet = 'Basic' ;
+      oFCKeditor.Width = '100%' ;
+      oFCKeditor.Height = '400' ;
+      oFCKeditor.ReplaceTextarea() ;
+     }
+     //-->
+</script>
+<form action='/admin/blog/new' method=post>
+	<table>
+		<tr>
+			<td>Title
+			</td>
+			<td>
+				<input type=text name="title">
+			</td>
+		</tr>
+		<tr>
+			<td>Content
+			</td>
+			<td>
+				<textarea id="contents" name="contents"></textarea>
+				<script type="text/javascript">
+					showFCK();
+				</script>
+			</td>
+		</tr>
+	  <tr>
+	  	<td>Category
+			</td>
+			<td>
+				<select name="category_id">
+					{% for category in Categories %}
+					<option value="{{ category.key }}">{{ category.name }} </option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>	
+		<tr>
+			<td colspan=2>
+			<input type="submit" value="post">
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock content %}

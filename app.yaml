@@ -7,6 +7,18 @@ handlers:
 
 - url: /styles
   static_dir: styles
+
+- url: /scripts
+  static_dir: scripts
+
+- url: /admin
+  script: admin.py
+
+- url: /admin/blog/.*
+  script: admin.py
+
+- url: /admin/category/.*
+  script: admin.py
   
 - url: /
   script: main.py
