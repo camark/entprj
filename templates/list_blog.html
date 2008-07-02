@@ -1,14 +1,10 @@
 {% extends "base_generic.html" %}
 {% block sidebar %}
-<h2>Category</h2>
-<ul id="cats">
-{% for cat in Categories %}
-  <li>{{ cat.name }} </li>
-{% endfor %}
-</ul>
-{% endblock %}
-{% block content %}
 
+	
+{% endblock sidebar %}
+
+{% block content %}
 {% if is_logined %}<a href='/blog/new'>New Blog</a> {% endif %} &nbsp;&nbsp;{% if is_admin %}<a href='/category/new'>New Category</a>{% endif %}
 {% for blog in Blogs %}
 <div class="post">
@@ -22,4 +18,4 @@
 	</div>
 </div>	
 {% endfor %}
-{% endblock %}
+{% endblock content %}

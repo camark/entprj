@@ -16,7 +16,7 @@
 			<div id="nav">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li><a href="/view/page/about">About Me</a></li>		
+					<li><a href="/blog/aboutme">About Me</a></li>		
 				</ul>
 			</div>
 		</div>
@@ -25,7 +25,27 @@
 				{% block content %} {% endblock %}
 			</div>
 			<div id="sidebar">
-				{% block sidebar %} {% endblock %}
+				{% block sidebar %} 
+        <h2>Category</h2>
+        <ul id="cats">
+        {% for cat in Categories %}
+          <li>{{ cat.name }} </li>
+        {% endfor %}
+        </ul>
+        
+        <h2>Recent Posts:</h2>
+        <ul id='recent_post'>
+        	{% for recent_blog in recent_blogs %}
+        			<li><a href='/blog/show/{{ recent_blog.key }}'>{{ recent_blog.title }} </a></li>
+        	{% endfor %}
+        </ul>
+        
+        
+        <h2>Other</h2>
+        <ul>
+        <li><a href='/admin'/>Admin</li>
+        </ul>
+				{% endblock %}
 			</div>
 
 			<div style="visibility:hidden; clear:both"> </div>
