@@ -49,36 +49,6 @@ class MainHandler(webapp.RequestHandler):
     else:
       self.redirect(users.create_login_url(self.request.uri))
 
-class NewBlogHandler(HelloBlog):  
-  def get(self):
-    if self.check_login(users.create_login_url(self.request.uri)):
-      self.response.headers['Content-type']='text/html'
-      self.template_values={
-        'Categories':Category.all().fetch(1000)
-        }
-      self.render('templates/new_blog.html')
-       
-
-  def post(self):
-    if self.check_login(users.create_login_url(self.request.uri)):
-      _title=self.param('title')
-      _content=db.Text(self.param('content'))
-      _category_id=self.param('category_id')
-      _category=Category.get(_category_id)
-      _blog=Blog(
-        title=_title,
-        content=_content,
-        category=_category,
-        author=users.get_current_user()
-        )
-      _blog.put()
-
-      self.redirect('/')
-
-class DeleteBlog(HelloBlog):
-  def get(self):
-    self.response.headers['Content-type']='text/html'
-    self.response.out.write('Delete Blog')
 
 
 #Blog Show Function
@@ -118,31 +88,6 @@ class ItemBlog(HelloBlog):
       }
     self.render('templates/item_blog.html')
     
-class NewCategory(HelloBlog):
-  def get(self):
-    if self.check_admin(users.create_login_url(self.request.uri)):
-      self.render('templates/new_category.html',{})
-
-  def post(self):
-    if self.check_admin(users.create_login_url(self.request.uri)):
-      cat_name=self.param('cat_name')
-
-      category=Category(name=cat_name)
-
-      category.put()
-      if category.is_saved():
-        self.redirect('/')
-      else:
-        self.write('Save Error!')
-
-
-class ListCategory(HelloBlog):
-  def get(self):
-    cats=Category.all().fetch(50)
-    self.template_values={
-      'Categories':cats
-      }
-    self.render('templates/list_category.html')
 
 class RssBlog(HelloBlog):
   def get(self):
@@ -183,12 +128,8 @@ class AboutMe(HelloBlog):
 def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
-    ('/blog/new',NewBlogHandler),
-    ('/blog/delete',DeleteBlog),
     ('/blog/show/.*',ItemBlog),
     ('/blog/aboutme',AboutMe),
-    ('/category/new',NewCategory),
-    ('/category/list',ListCategory),
     ('/comment/new',NewComment),
     ('/blog/rss',RssBlog)
     ],
