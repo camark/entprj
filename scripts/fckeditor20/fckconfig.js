@@ -59,7 +59,7 @@ FCKConfig.TabSpaces		= 0 ;
 FCKConfig.ShowBorders	= true ;
 FCKConfig.UseBROnCarriageReturn	= false ;
 FCKConfig.ToolbarStartExpanded	= true ;
-FCKConfig.ToolbarCanCollapse	= true ;
+FCKConfig.ToolbarCanCollapse	= false ;
 FCKConfig.IEForceVScroll = false ;
 FCKConfig.IgnoreEmptyParagraphValue = true ;
 
@@ -80,7 +80,11 @@ FCKConfig.ToolbarSets["Default"] = [
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
-	['Bold','Italic','-','OrderedList','UnorderedList','-','Link','Unlink','-','About']
+	['Bold','Italic'],
+	['OrderedList','UnorderedList'],
+	['Link','Unlink','Image'],
+	['JustifyLeft','JustifyCenter','JustifyRight'],
+	['FontSize','TextColor']
 ] ;
 
 FCKConfig.ContextMenu = ['Generic','Link','Anchor','Image','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','TableCell','Table','Form'] ;
@@ -110,12 +114,12 @@ FCKConfig.ImageDlgHideAdvanced	= false ;
 
 FCKConfig.FlashDlgHideAdvanced	= false ;
 
-FCKConfig.LinkBrowser = true ;
+FCKConfig.LinkBrowser = false ;
 FCKConfig.LinkBrowserURL = FCKConfig.BasePath + 'filemanager/browser/default/browser.html?Connector=connectors/php/connector.php' ;
 FCKConfig.LinkBrowserWindowWidth	= screen.width * 0.7 ;	// 70%
 FCKConfig.LinkBrowserWindowHeight	= screen.height * 0.7 ;	// 70%
 
-FCKConfig.ImageBrowser = true ;
+FCKConfig.ImageBrowser = false ;
 FCKConfig.ImageBrowserURL = FCKConfig.BasePath + 'filemanager/browser/default/browser.html?Type=Image&Connector=connectors/php/connector.php' ;
 FCKConfig.ImageBrowserWindowWidth  = screen.width * 0.7 ;	// 70% ;
 FCKConfig.ImageBrowserWindowHeight = screen.height * 0.7 ;	// 70% ;
@@ -130,7 +134,7 @@ FCKConfig.LinkUploadURL = FCKConfig.BasePath + 'filemanager/upload/php/upload.ph
 FCKConfig.LinkUploadAllowedExtensions	= "" ;			// empty for all
 FCKConfig.LinkUploadDeniedExtensions	= ".(php|php3|php5|phtml|asp|aspx|ascx|jsp|cfm|cfc|pl|bat|exe|dll|reg|cgi)$" ;	// empty for no one
 
-FCKConfig.ImageUpload = true ;
+FCKConfig.ImageUpload = false ;
 FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/upload/php/upload.php?Type=Image' ;
 FCKConfig.ImageUploadAllowedExtensions	= ".(jpg|gif|jpeg|png)$" ;		// empty for all
 FCKConfig.ImageUploadDeniedExtensions	= "" ;							// empty for no one

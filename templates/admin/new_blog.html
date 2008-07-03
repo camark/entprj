@@ -7,7 +7,7 @@
       var oFCKeditor = new FCKeditor( 'contents' ) ;
       oFCKeditor.BasePath = '/scripts/fckeditor20/' ;
       oFCKeditor.ToolbarSet = 'Basic' ;
-      oFCKeditor.Width = '100%' ;
+      oFCKeditor.Width = '450' ;
       oFCKeditor.Height = '400' ;
       oFCKeditor.ReplaceTextarea() ;
      }
@@ -23,10 +23,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Content
+			<td valign=top>Content
 			</td>
 			<td>
-				<textarea id="contents" name="contents"></textarea>
+				<textarea id="contents" name="contents" cols=40 rows=5 class="text_area"></textarea>
 				<script type="text/javascript">
 					showFCK();
 				</script>
