@@ -10,7 +10,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 211 times in query history.
+# Used 374 times in query history.
 - kind: Blog
   properties:
   - name: date

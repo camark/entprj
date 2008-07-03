@@ -56,14 +56,37 @@ class MainHandler(webapp.RequestHandler):
 #Blog Show Function
 class ListBlog(HelloBlog):
   def get(self):
-    Blogs=Blog.all().order('-date')
+    page=0
+    show_prev_page = False
+    show_next_page = False
+    per_page_show = 5
+    path=self.request.path
+
+    if path.startswith('/page'):
+      page = int(path[6:])
+      
+    # print page
+    all_blogs = Blog.all()
+    max_page = ( all_blogs.count() -1) / per_page_show
+    Blogs=all_blogs.order('-date').fetch(per_page_show,offset=page * per_page_show)
+
+    show_prev_page = not (page == 0)
+    show_next_page = not (page == max_page)
+    show_page_panel = show_prev_page or show_next_page
+    
     Categories=Category.all()
     Recent_Blogs=Blog.all().order('-date').fetch(5)    
     
-    if Blogs.count()>0:
+    if Blogs :
       self.template_values={
         'Blogs':Blogs,
+        'path':page,
         'recent_blogs':Recent_Blogs,
+        'show_prev_page':show_prev_page,
+        'show_next_page':show_next_page,
+        'show_page_panel':show_page_panel,
+        'prev_page_num':page-1,
+        'next_page_num':page+1,
         'Categories':Categories,
         'is_logined':self.is_login,
         'is_admin':self.is_admin
@@ -162,6 +185,7 @@ class AboutMe(HelloBlog):
 def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
+    ('/page/\\d+',ListBlog),
     ('/blog/show/.*',ItemBlog),
     ('/blog/aboutme',AboutMe),
     ('/comment/new',NewComment),

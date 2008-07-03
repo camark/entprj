@@ -1,11 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+
 {% if is_admin %}<a href='/admin/blog/new'>New Blog</a> {% endif %} &nbsp;&nbsp;{% if is_admin %}<a href='/admin/category/new'>New Category</a>{% endif %}
 {% for blog in Blogs %}
 <div class="post">
 	<div class="post-title">
-		<h2> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h2>
+		<h2> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} on {{ path }}</a></h2>
 		<span class="post-dates">Published at: {{ blog.date }} by {{blog.author}}</span>
 		<!--<span class="post-comments">Category:{{ blog.category.name }}</span>  -->
 	</div>
@@ -14,4 +15,15 @@
 	</div>
 </div>	
 {% endfor %}
+
+<div id="page_panel">
+{% if show_page_panel %}
+	{% if show_prev_page %}
+	<a href='/page/{{ prev_page_num }}'><span style="font-size:9px;">&lt;&lt;</span> Prev </a>
+	{% endif %}
+	{% if show_next_page %}
+	<a href='/page/{{ next_page_num }}'> Next <span style="font-size:9px;">&gt;&gt;</span></a>
+	{% endif %}
+{% endif %}
+</div>
 {% endblock content %}
