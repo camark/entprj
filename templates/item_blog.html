@@ -9,17 +9,21 @@
 	<div class="entry">
 		<p>{{ blog.content }}
 	</div>
-</div>	
-	
-<font color=Red>Comments</font>
-{% for comment in comments %}
-<p> {{ comment.author }} publish at {{ comment.date }}:<br/>
-<p>{{ comment.detail }}
-{% endfor %}
-
+	<h3 id="comments">Comments</h3>
+	<ol>
+			{% for comment in comments %}
+			<li>
+			<cite><p> {{ comment.author }} publish at {{ comment.date }}:</cite><br/>
+			<p>{{ comment.detail }}
+			</li>
+			{% endfor %}
+	</ol>
+</div>		
 <br/>
-<form action='/comment/new' method=post>
+<h3 id="respond">Leave a Reply</h3>
+<form action='/comment/new' method=post class="form">
 	<input type=hidden value='{{ blog.key }}' name='blog_id'>
-	Comments:<input type=text name='detail'><br>
+	<textarea class='text_area' name='detail' id='detail' rows="5" cols="40" ></textarea><br>
 	<input type='submit' value='Post'/>	
+</form>
 {% endblock %}

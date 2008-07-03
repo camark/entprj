@@ -133,21 +133,31 @@ class NewComment(HelloBlog):
       if _blog==None:
         self.write('Blog not find')
       else:
-        _comment=Comment(
-          blog=_blog,
-          detail=_detail,
-          author=users.get_current_user()
-          )
-        _comment.put()
+        try:
+          _comment=Comment(
+            blog=_blog,
+            detail=_detail,
+            author=users.get_current_user()
+            )
+          _comment.put()
 
-        self.redirect('/blog/show/%s' % (_blog_id))
+          self.redirect('/blog/show/%s' % (_blog_id))
+        except db.BadValueError,e:
+          self.redirect('/')
 
   def get(self):
     self.redirect('/')
 
 class AboutMe(HelloBlog):
   def get(self):
-    self.render('templates/about_me.html',{})
+    Categories=Category.all()
+    Recent_Blogs=Blog.all().order('-date').fetch(5)
+
+    self.template_values={
+      'recent_blogs':Recent_Blogs,
+      'Categories':Categories,
+      }
+    self.render('templates/about_me.html')
     
 def main():
   application = webapp.WSGIApplication([
