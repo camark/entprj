@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-{% if is_logined %}<a href='/blog/new'>New Blog</a> {% endif %} &nbsp;&nbsp;{% if is_admin %}<a href='/category/new'>New Category</a>{% endif %}
+{% if is_admin %}<a href='/admin/blog/new'>New Blog</a> {% endif %} &nbsp;&nbsp;{% if is_admin %}<a href='/admin/category/new'>New Category</a>{% endif %}
 {% for blog in Blogs %}
 <div class="post">
 	<div class="post-title">
