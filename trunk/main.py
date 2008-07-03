@@ -80,7 +80,6 @@ class ListBlog(HelloBlog):
     if Blogs :
       self.template_values={
         'Blogs':Blogs,
-        'path':page,
         'recent_blogs':Recent_Blogs,
         'show_prev_page':show_prev_page,
         'show_next_page':show_next_page,
