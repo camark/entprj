@@ -17,11 +17,12 @@
 
 import wsgiref.handlers
 import sys
-
+import datetime
 
 sys.path.append('modules')
 sys.path.append('models')
 
+import PyRSS2Gen
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext import db
@@ -30,6 +31,7 @@ from helloblog import *
 from blog import *
 from category import *
 from time import gmtime,strftime
+
 
 
 
@@ -91,13 +93,35 @@ class ItemBlog(HelloBlog):
 
 class RssBlog(HelloBlog):
   def get(self):
-    count=5
-    Blogs=Blog.all().fetch
-    self.template_values={
-      'blogs':Blogs
-      }
+    rss_out_count=5
+    Blogs=Blog.all().order('-date').fetch(rss_out_count)
+
+    blog_items=[]
+
+    for _blog in Blogs:
+      _blog_url='%s/blog/show/%s' % (self.request.host_url,_blog.key())
+      blog_items.append(PyRSS2Gen.RSSItem(
+        title = _blog.title,
+        author = _blog.author.nickname(),
+        link = _blog_url,
+        description = _blog.content,
+        pubDate = _blog.date,
+        guid = PyRSS2Gen.Guid(_blog_url),
+        categories = [_blog.category.name]
+        )
+                        )
+
+    blog_title = 'Hello Blog';
+    rss = PyRSS2Gen.RSS2(
+      title = blog_title,
+      link = self.request.host_url + '/',
+      description = 'Lastest %d posts of %s ' % (rss_out_count,blog_title),
+      lastBuildDate = datetime.datetime.now(),
+      items = blog_items
+      )
+        
     self.response.headers['Content-type']='application/rss+xml; charset=utf-8'
-    self.render('templates/rss_blog.html')
+    self.write(rss.to_xml(encoding='utf-8'))
 
 class NewComment(HelloBlog):
   def post(self):
