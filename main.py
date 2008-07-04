@@ -17,6 +17,7 @@
 
 import wsgiref.handlers
 import sys
+import urllib
 import datetime
 
 sys.path.append('modules')
@@ -149,7 +150,7 @@ class NewComment(HelloBlog):
   def post(self):
     if self.check_login(users.create_login_url(self.request.uri)):
       _blog_id=self.param('blog_id')
-      _detail=self.param('detail')
+      _detail=urllib.quote_plus(self.param('detail'))
       _blog=Blog.get(_blog_id)
 
       if _blog==None:
