@@ -82,7 +82,7 @@ FCKConfig.ToolbarSets["Default"] = [
 FCKConfig.ToolbarSets["Basic"] = [
 	['Bold','Italic'],
 	['OrderedList','UnorderedList'],
-	['Link','Unlink','Image'],
+	['Link','Unlink','Image','Flash'],
 	['JustifyLeft','JustifyCenter','JustifyRight'],
 	['FontSize','TextColor']
 ] ;
@@ -124,7 +124,7 @@ FCKConfig.ImageBrowserURL = FCKConfig.BasePath + 'filemanager/browser/default/br
 FCKConfig.ImageBrowserWindowWidth  = screen.width * 0.7 ;	// 70% ;
 FCKConfig.ImageBrowserWindowHeight = screen.height * 0.7 ;	// 70% ;
 
-FCKConfig.FlashBrowser = true ;
+FCKConfig.FlashBrowser = false ;
 FCKConfig.FlashBrowserURL = FCKConfig.BasePath + 'filemanager/browser/default/browser.html?Type=Flash&Connector=connectors/php/connector.php' ;
 FCKConfig.FlashBrowserWindowWidth  = screen.width * 0.7 ;	//70% ;
 FCKConfig.FlashBrowserWindowHeight = screen.height * 0.7 ;	//70% ;
@@ -139,7 +139,7 @@ FCKConfig.ImageUploadURL = FCKConfig.BasePath + 'filemanager/upload/php/upload.p
 FCKConfig.ImageUploadAllowedExtensions	= ".(jpg|gif|jpeg|png)$" ;		// empty for all
 FCKConfig.ImageUploadDeniedExtensions	= "" ;							// empty for no one
 
-FCKConfig.FlashUpload = true ;
+FCKConfig.FlashUpload = false ;
 FCKConfig.FlashUploadURL = FCKConfig.BasePath + 'filemanager/upload/php/upload.php?Type=Flash' ;
 FCKConfig.FlashUploadAllowedExtensions	= ".(swf|fla)$" ;		// empty for all
 FCKConfig.FlashUploadDeniedExtensions	= "" ;					// empty for no one
