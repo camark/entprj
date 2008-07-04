@@ -18,4 +18,11 @@ class Comment(db.Model):
     date = db.DateTimeProperty(auto_now_add=True)
     blog = db.ReferenceProperty(Blog,required=True,collection_name='comments')
 
+class Data(db.Model):
+    text = db.TextProperty()
+
+class Logger(db.Model):
+    request = db.TextProperty()
+    response = db.TextProperty()
+    date = db.DateTimeProperty(auto_now_add=True)
 
