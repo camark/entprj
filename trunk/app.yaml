@@ -26,6 +26,9 @@ handlers:
 - url: /page/.*
   script: main.py
 
+-url: /api/.*
+  script: apis.py
+
 - url: /blog/.*
   script: main.py
 
