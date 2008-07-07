@@ -43,7 +43,7 @@
         <h2>Recent Posts:</h2>
         <ul id='recent_post'>
         	{% for recent_blog in recent_blogs %}
-        			<li><a href='/blog/show/{{ recent_blog.key }}'>{{ recent_blog.title }} </a></li>
+        			<li><a href='/blog/show/{{ recent_blog.key.id }}'>{{ recent_blog.title }} </a></li>
         	{% endfor %}
         </ul>
         
