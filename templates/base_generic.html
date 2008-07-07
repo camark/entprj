@@ -36,7 +36,7 @@
         <h2>Category</h2>
         <ul id="cats">
         {% for cat in Categories %}
-          <li>{{ cat.name }} </li>
+          <li>{{ cat.name }}({{ cat.blogs.count }})</li>
         {% endfor %}
         </ul>
         
