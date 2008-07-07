@@ -106,14 +106,14 @@ def metaWeblog_getPost(postid, username, password):
         'publish' : True
         }
 
-def metaWeblog_getRecentPosts(blogid, username, password, numberOfPosts):
+def metaWeblog_getRecentPosts(postid, username, password, numberOfPosts):
     _blogs = Blog.all().order('-date').fetch(min(int(numberOfPosts),5))
 
     result = []
 
     for _blog in _blogs:
         result.append({
-            'postid' : postid,
+            'postid' : _blog.key().id(),
             'dateCreated' : _blog.date,
             'title' : _blog.title,
             'description' : unicode(_blog.content),
@@ -171,7 +171,7 @@ class CallApi(HelloBlog):
 		#self.response.headers['Content-Type'] = 'application/xml; charset=utf-8'
 		request = self.request.body
 		response = dispatcher._marshaled_dispatch(request)
-		#Logger(request = unicode(request, 'utf-8'), response = unicode(response, 'utf-8')).put()
+		Logger(request = unicode(request, 'utf-8'), response = unicode(response, 'utf-8')).put()
 		self.write(response)
 
 class View(HelloBlog):
