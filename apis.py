@@ -127,7 +127,7 @@ def blogger_getUsersBlogs(discard, username, password):
     if not check_api_user_pass(username, password):
             raise Exception, 'access denied'
 
-    return [{'url' : 'http://superwar3fan.appspot.com' + '/', 'blogid' : 'helloblog_001', 'blogName' : 'HelloBlog'}]
+    return [{'url' : 'http://superwar3fan.appspot.com/', 'blogid' : 'helloblog_001', 'blogName' : 'HelloBlog'}]
 
 def blogger_deletePost(appkey, postid, username, password, publish):
     user = check_api_user_pass(username, password)
@@ -177,15 +177,16 @@ class CallApi(HelloBlog):
 class View(HelloBlog):
 	def get(self):
 		if self.check_admin(users.create_login_url(self.request.uri)):
-			self.write('<html><body><h1>Logger</h1>')
+			self.write_str('<html><body><h1>Logger</h1>')
 			for log in Logger.all().order('-date'):
-				self.write("<p>date: %s</p>" % log.date)
-				self.write("<h1>Request</h1>")
-				self.write('<pre>%s</pre>' % cgi.escape(log.request))
-				self.write("<h1>Reponse</h1>")
-				self.write('<pre>%s</pre>' % cgi.escape(log.response))
-				self.write("<hr />")
-			self.write('</body></html>')		
+				self.write_str("<p>date: %s</p>" % log.date)
+				self.write_str("<h1>Request</h1>")
+				self.write_str('<pre>%s</pre>' % cgi.escape(log.request))
+				self.write_str("<h1>Reponse</h1>")
+				self.write_str('<pre>%s</pre>' % cgi.escape(log.response))
+				self.write_str("<hr />")
+			self.write_str('</body></html>')
+			
 def main():
 	application = webapp.WSGIApplication(
 			[

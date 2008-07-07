@@ -38,6 +38,9 @@ class HelloBlog(webapp.RequestHandler):
         self.render('templates/message_blog.html',template_values)
         #self.response.out.write(s)
 
+    def write_str(self,s):
+        self.response.out.write(s)
+        
     def render(self,name,values=None):
         if values==None:
             values=self.template_values
