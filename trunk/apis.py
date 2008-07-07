@@ -171,7 +171,7 @@ class CallApi(HelloBlog):
 		#self.response.headers['Content-Type'] = 'application/xml; charset=utf-8'
 		request = self.request.body
 		response = dispatcher._marshaled_dispatch(request)
-		Logger(request = unicode(request, 'utf-8'), response = unicode(response, 'utf-8')).put()
+		#Logger(request = unicode(request, 'utf-8'), response = unicode(response, 'utf-8')).put()
 		self.write(response)
 
 class View(HelloBlog):
