@@ -1,4 +1,8 @@
-<form action='/category/new' method=post>
+{% extends '../admin_base.html' %}
+
+{% block content %}
+<form action='/admin/category/new' method=post>
 	Category name:<input type=text name='cat_name'><br>
 	<input type=submit value='Save'>
 </form>
+{% endblock content %}
