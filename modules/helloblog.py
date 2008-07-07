@@ -32,7 +32,11 @@ class HelloBlog(webapp.RequestHandler):
         return self.request.get(name,**kw)
 
     def write(self,s):
-        self.response.out.write(s)
+        template_values={
+            'msg':s
+            }
+        self.render('templates/message_blog.html',template_values)
+        #self.response.out.write(s)
 
     def render(self,name,values=None):
         if values==None:

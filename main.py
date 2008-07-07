@@ -99,19 +99,23 @@ class ItemBlog(HelloBlog):
   def get(self):
     url=self.request.path
     _blog_id=url[11:]
-    _blog=Blog.get(_blog_id)
-    Categories=Category.all()
-    Recent_Blogs=Blog.all().order('-date').fetch(5)
+    _blog=Blog.get_by_id(int(_blog_id))
 
-    _comments=_blog.comments
+    if _blog==None:
+      self.write('No such Blog')
+    else:
+      Categories=Category.all()
+      Recent_Blogs=Blog.all().order('-date').fetch(5)
 
-    self.template_values={
-      'blog':_blog,
-      'comments':_comments,
-      'recent_blogs':Recent_Blogs,
-      'Categories':Categories,
-      }
-    self.render('templates/item_blog.html')
+      _comments=_blog.comments
+
+      self.template_values={
+        'blog':_blog,
+        'comments':_comments,
+        'recent_blogs':Recent_Blogs,
+        'Categories':Categories,
+        }
+      self.render('templates/item_blog.html')
     
 
 class RssBlog(HelloBlog):
@@ -151,7 +155,7 @@ class NewComment(HelloBlog):
     if self.check_login(users.create_login_url(self.request.uri)):
       _blog_id=self.param('blog_id')
       _detail=urllib.quote_plus(self.param('detail'))
-      _blog=Blog.get(_blog_id)
+      _blog=Blog.get_by_id(int(_blog_id))
 
       if _blog==None:
         self.write('Blog not find')
@@ -186,7 +190,7 @@ def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
     ('/page/\\d+',ListBlog),
-    ('/blog/show/.*',ItemBlog),
+    ('/blog/show/\\d+',ItemBlog),
     ('/blog/aboutme',AboutMe),
     ('/comment/new',NewComment),
     ('/blog/rss',RssBlog)

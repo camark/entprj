@@ -2,7 +2,7 @@
 {% block content %}
 <div class="post">
 	<div class="post-title">
-		<h2> <a href='/blog/show/{{ blog.key }}'>{{ blog.title }} </a></h2>
+		<h2> <a href='/blog/show/{{ blog.key.id }}'>{{ blog.title }} </a></h2>
 		<span class="post-dates">Published at: {{ blog.date }} by {{blog.author}}</span>
 		<!--<span class="post-comments">Category:{{ blog.category.name }}</span>  -->
 	</div>
@@ -22,7 +22,7 @@
 <br/>
 <h3 id="respond">Leave a Reply</h3>
 <form action='/comment/new' method=post class="form">
-	<input type=hidden value='{{ blog.key }}' name='blog_id'>
+	<input type=hidden value='{{ blog.key.id }}' name='blog_id'>
 	<textarea class='text_area' name='detail' id='detail' rows="5" cols="40" ></textarea><br>
 	<input type='submit' value='Post'/>	
 </form>
