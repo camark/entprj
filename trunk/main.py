@@ -64,7 +64,15 @@ class ListBlog(HelloBlog):
     path=self.request.path
 
     if path.startswith('/page'):
-      page = int(path[6:])
+      params = path[6:].split('/')
+      if len(params)==1:
+        page=params[0]
+      else:
+        if len(params)==3 and params[1]='category':
+          have_cat=True
+          page=params[0]
+          _category_id=params[2]
+      
       
     # print page
     all_blogs = Blog.all()
@@ -190,6 +198,7 @@ def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
     ('/page/\\d+',ListBlog),
+    ('/page/\\d+\category/\\d+',ListBlog),
     ('/blog/show/\\d+',ItemBlog),
     ('/blog/aboutme',AboutMe),
     ('/comment/new',NewComment),
