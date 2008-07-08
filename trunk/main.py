@@ -62,20 +62,27 @@ class ListBlog(HelloBlog):
     show_next_page = False
     per_page_show = 5
     path=self.request.path
+    have_cat = False
+    _category_id=0
 
     if path.startswith('/page'):
       params = path[6:].split('/')
       if len(params)==1:
         page=params[0]
       else:
-        if len(params)==3 and params[1]='category':
-          have_cat=True
-          page=params[0]
-          _category_id=params[2]
+        if len(params)==3 and params[1]=='category':
+          have_cat =True
+          page=int(params[0])
+          _category_id=int(params[2])
       
       
     # print page
-    all_blogs = Blog.all()
+
+    if have_cat:
+      _request_cat=Category.get_by_id(_category_id)
+      all_blogs=_request_cat.blogs
+    else:
+      all_blogs = Blog.all()
     max_page = ( all_blogs.count() -1) / per_page_show
     Blogs=all_blogs.order('-date').fetch(per_page_show,offset=page * per_page_show)
 
@@ -97,11 +104,18 @@ class ListBlog(HelloBlog):
         'next_page_num':page+1,
         'Categories':Categories,
         'is_logined':self.is_login,
-        'is_admin':self.is_admin
+        'is_admin':self.is_admin,
+        'have_cat':have_cat,
+        'category_id':_category_id
         }
       self.render('templates/list_blog.html')
     else:
-      self.write('Current no blog!')
+      self.template_values={
+        'recent_blogs': Recent_Blogs,
+        'Categories':Categories,
+        'msg':'Current no blog'
+        }
+      self.render('templates/message_blog.html')
 
 class ItemBlog(HelloBlog):
   def get(self):
@@ -198,7 +212,7 @@ def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
     ('/page/\\d+',ListBlog),
-    ('/page/\\d+\category/\\d+',ListBlog),
+    ('/page/\\d+/category/\\d+',ListBlog),
     ('/blog/show/\\d+',ItemBlog),
     ('/blog/aboutme',AboutMe),
     ('/comment/new',NewComment),

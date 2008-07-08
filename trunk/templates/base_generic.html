@@ -36,7 +36,7 @@
         <h2>Category</h2>
         <ul id="cats">
         {% for cat in Categories %}
-          <li>{{ cat.name }}&nbsp;({{ cat.blogs.count }})</li>
+          <li><a href='/page/0/category/{{ cat.key.id }}'>{{ cat.name }}&nbsp;({{ cat.blogs.count }})</a></li>
         {% endfor %}
         </ul>
         

@@ -20,10 +20,18 @@
 <div id="page_panel">
 {% if show_page_panel %}
 	{% if show_prev_page %}
-	<a href='/page/{{ prev_page_num }}'><span style="font-size:9px;">&lt;&lt;</span> Prev </a>
+		{% if not have_cat %}
+			<a href='/page/{{ prev_page_num }}'><span style="font-size:9px;">&lt;&lt;</span> Prev </a>
+		{% else %}
+			<a href='/page/{{ prev_page_num }}/category/{{ category_id }}'><span style="font-size:9px;">&lt;&lt;</span> Prev </a>
+		{% endif %}
 	{% endif %}
 	{% if show_next_page %}
-	<a href='/page/{{ next_page_num }}'> Next <span style="font-size:9px;">&gt;&gt;</span></a>
+		{% if not have_cat %}
+			<a href='/page/{{ next_page_num }}'> Next <span style="font-size:9px;">&gt;&gt;</span></a>
+		{% else %}
+			<a href='/page/{{ next_page_num }}/category/{{ category_id }}'> Next <span style="font-size:9px;">&gt;&gt;</span></a>
+		{% endif %}
 	{% endif %}
 {% endif %}
 </div>
