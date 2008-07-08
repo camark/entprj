@@ -10,20 +10,20 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 7 times in query history.
+# Used 16 times in query history.
 - kind: Blog
   properties:
   - name: category
   - name: date
     direction: desc
 
-# Used 465 times in query history.
+# Used 495 times in query history.
 - kind: Blog
   properties:
   - name: date
     direction: desc
 
-# Used 2 times in query history.
+# Used 3 times in query history.
 - kind: Logger
   properties:
   - name: date

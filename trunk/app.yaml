@@ -8,6 +8,10 @@ handlers:
 - url: /styles
   static_dir: styles
 
+- url: /rss\.png
+  static_files: images/rss.png
+  upload: images/rss.png
+
 - url: /scripts
   static_dir: scripts
 
