@@ -68,7 +68,7 @@ class ListBlog(HelloBlog):
     if path.startswith('/page'):
       params = path[6:].split('/')
       if len(params)==1:
-        page=params[0]
+        page=int(params[0])
       else:
         if len(params)==3 and params[1]=='category':
           have_cat =True
@@ -143,10 +143,23 @@ class ItemBlog(HelloBlog):
 class RssBlog(HelloBlog):
   def get(self):
     rss_out_count=5
-    Blogs=Blog.all().order('-date').fetch(rss_out_count)
+    path=self.request.path
+
+    len_str=len(path)
+    #print path
+    if len_str==len('/blog/rss'):
+      Blogs=Blog.all().order('-date').fetch(rss_out_count)
+    else:
+      real_path=path[len('/blog/rss')+1:]
+      #print real_path
+      params=real_path.split('/')
+      _category_id=int(params[1])
+      _cat=Category.get_by_id(_category_id)
+      Blogs=_cat.blogs.fetch(rss_out_count)
+      
 
     blog_items=[]
-
+  
     for _blog in Blogs:
       _blog_url='%s/blog/show/%s' % (self.request.host_url,_blog.key())
       blog_items.append(PyRSS2Gen.RSSItem(
@@ -216,7 +229,8 @@ def main():
     ('/blog/show/\\d+',ItemBlog),
     ('/blog/aboutme',AboutMe),
     ('/comment/new',NewComment),
-    ('/blog/rss',RssBlog)
+    ('/blog/rss',RssBlog),
+    ('/blog/rss/category/\\d+',RssBlog)
     ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
