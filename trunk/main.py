@@ -183,7 +183,7 @@ class RssBlog(HelloBlog):
       )
         
     self.response.headers['Content-type']='application/rss+xml; charset=utf-8'
-    self.write(rss.to_xml(encoding='utf-8'))
+    self.write_str(rss.to_xml(encoding='utf-8'))
 
 class NewComment(HelloBlog):
   def post(self):
