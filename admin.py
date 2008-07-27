@@ -42,8 +42,16 @@ class NewBlogHandler(HelloBlog):
 
 class DeleteBlog(HelloBlog):
   def get(self):
-    self.response.headers['Content-type']='text/html'
-    self.response.out.write('Delete Blog')
+    _blog_id = int(self.request.path[len('/admin/blog/delete/'):])
+
+    _blog=Blog.get_by_id(_blog_id)
+
+    if _blog:
+      _blog.delete()
+      self.redirect('/blog/list')
+    else:
+      self.write('No blog find')
+
     
 class NewCategory(HelloBlog):
   def get(self):
@@ -88,7 +96,7 @@ def main():
   application = webapp.WSGIApplication([
     ('/admin', BlogAdmin),
     ('/admin/blog/new',NewBlogHandler),
-    ('/admin/blog/delete',DeleteBlog),
+    ('/admin/blog/delete/.*',DeleteBlog),
     ('/admin/category/delete/.*',DeleteCategory),
     ('/admin/category/new',NewCategory),
     ('/admin/category/list',ListCategory)
