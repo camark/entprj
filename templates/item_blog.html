@@ -13,7 +13,7 @@
 	<ol>
 			{% for comment in comments %}
 			<li>
-			<cite><p> {{ comment.author }} publish at {{ comment.date }}:</cite><br/>
+			<cite>{% if is_admin %}{% endif %}<p> {{ comment.author }} publish at {{ comment.date }}:</cite><br/>
 			<p>{{ comment.detail }}
 			</li>
 			{% endfor %}
