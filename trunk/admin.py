@@ -92,6 +92,15 @@ class BlogAdmin(HelloBlog):
                 self.write('You must be the Administator!')
             else:
                 self.render('templates/admin_index.html',{})
+
+class DeleteComment(HelloBlog):
+  def get(self):
+    _comment_id= int(self.request.path[len('/admin/comment/delete/'):])
+
+    _comment=Comment.get_by_id(_comment_id)
+
+    if _comment:
+      _comment.delete()
 def main():
   application = webapp.WSGIApplication([
     ('/admin', BlogAdmin),
