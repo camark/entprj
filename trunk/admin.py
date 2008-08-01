@@ -48,7 +48,7 @@ class DeleteBlog(HelloBlog):
 
     if _blog:
       _blog.delete()
-      self.redirect('/blog/list')
+      self.redirect('/')
     else:
       self.write('No blog find')
 
