@@ -1,0 +1,48 @@
+{% extends '../base_generic.html' %}
+{% block content %}
+<a href='/Olympic/China'>中国金牌榜</a>
+<table>
+	<tr>
+		<td>
+			排名
+		</td>
+		<td>
+			国家名称
+		</td>
+		<td>
+			金牌
+		</td>			
+		<td>
+			银牌
+		</td>
+		<td>
+			铜牌
+		</td>
+		<td>
+			奖牌总数
+		</td>
+	</tr>
+	{% for m in modals %}
+	<tr>
+		<td>
+			{{ m.no}}
+		</td>
+		<td>
+			{{ m.country }}
+		</td>
+		<td>
+			{{ m.gold }}
+		</td>			
+		<td>
+			{{ m.silver }}
+		</td>
+		<td>
+			{{ m.bronze }}
+		</td>
+		<td>
+			{{ m.total }}
+		</td>
+	</tr>
+	{% endfor %}	
+</table>
+{% endblock %}

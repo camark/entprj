@@ -1,0 +1,30 @@
+{% extends '../base_generic.html' %}
+{% block content %}
+<a href='/Olympic/Modal'>奥运奖牌榜</a>
+<table>
+	<tr>
+		<td>
+			夺金
+		</td>
+		<td>
+			运动员
+		</td>
+		<td>
+			项目
+		</td>		
+	</tr>
+	{% for m in modals %}
+	<tr>
+		<td>
+			{{ m.date }}
+		</td>
+		<td>
+			{{ m.player }}
+		</td>
+		<td>
+			{{ m.prj }}
+		</td>		
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
