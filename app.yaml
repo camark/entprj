@@ -44,3 +44,9 @@ handlers:
 
 - url: /comment/.*
   script: main.py
+
+- url: /Olympic/.*
+  script: Olympic.py
+
+- url: /Olympic
+  script: Olympic.py
