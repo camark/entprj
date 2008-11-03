@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>HelloBlog</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<style type="text/css" media="screen">
+			@import url(/styles/style.css);
+	</style>
+	</head>
+	<body>
+		<div id="logo">
+			<h1><a href='/'>Hello blog </a></h1>
+			<p>Blog on Google Apps Engine</p>
+		</div>
+		<div id="header">
+			<div id="nav">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/blog/aboutme">About Me</a></li>		
+				</ul>
+			</div>
+		</div>
+		<div id="page">			
+			<div id="content">
+				{% block content %} {% endblock %}
+			</div>
+			
+			<div style="visibility:hidden; clear:both"> </div>
+		</div>
+		<div id="footer">
+			<div id="footer_bg"></div>
+			<div class="footer-about"></div>
+			<hr class="clear" />
+		</div>
+		<div id="credits">
+			<div class="alignleft">Designed By <a href="mailto:gm8pleasure@gmail.com">superwar3fan</a>.</div>
+			<div class="alignright">Powered by <a href="http://www.python.org">Python</a>,<a href="http://www.appspot.com">GAE</a></div>
+		</div>
+	</body>
+</html>

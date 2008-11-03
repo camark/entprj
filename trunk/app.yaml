@@ -50,3 +50,9 @@ handlers:
 
 - url: /Olympic
   script: Olympic.py
+
+- url: /Intrepid
+  script: main.py
+
+- url: /Intrepid/.*
+  script: main.py

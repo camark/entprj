@@ -1,5 +1,9 @@
+# -*- coding: cp936 -*-
+
 import wsgiref.handlers
 import sys
+import os
+
 
 
 sys.path.append('modules')
@@ -101,6 +105,75 @@ class DeleteComment(HelloBlog):
 
     if _comment:
       _comment.delete()
+
+
+class IntrepidSourceList(HelloBlog):
+  def get(self):
+    self.mirrors={
+    'Archive.ubuntu.com更新服务器（欧洲，此为官方源，电信网通用户使用)':'http://archive.ubuntu.com/ubuntu/',
+    'Ubuntu.cn99.com更新服务器（江苏省常州市电信，推荐电信用户使用）':'http://ubuntu.cn99.com/ubuntu/',
+    'Mirrors.shlug.org更新服务器（电信服务器，Ubuntu China Official Mirror, maintained by Shanghai Linux User Group）':'http://cn.archive.ubuntu.com/ubuntu',
+    'Mirror.lupaworld.com更新服务器（浙江省杭州市双线服务器）':'http://mirror.lupaworld.com/ubuntu',
+    '厦门大学更新服务器（教育网服务器）':'ftp://ubuntu.realss.cn/ubuntu/',
+    '成都市 电子科技大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://ubuntu.uestc.edu.cn/ubuntu/',
+    '成都市 电子科技大学更新服务器2':'http://ubuntu.dormforce.net/ubuntu/',
+    '上海市上海交通大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://ftp.sjtu.edu.cn/ubuntu/',
+    '中国科学技术大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://debian.ustc.edu.cn/ubuntu/',
+    '中国台湾 台湾大学更新服务器（推荐网通用户使用，电信PING平均响应速度41MS。强烈推荐此源，比较完整，较少出现同步问题）':'http://ubuntu.csie.ntu.edu.tw/ubuntu/',
+    'mirror.rootguide.org更新服务器（上海市 电信）':'http://mirror.rootguide.org/ubuntu/',
+    '台湾的官方源速度也相当不错，有时甚至快于内地的':'http://tw.archive.ubuntu.com/ubuntu'
+    }
+
+  self.mirror_url=[
+    'deb %s intrepid main restricted universe multiverse',
+    'deb %s intrepid-security main restricted universe multiverse',
+    'deb %s intrepid-updates main restricted universe multiverse',
+    'deb %s intrepid-backports main restricted universe multiverse',
+    'deb %s intrepid-proposed main restricted universe multiverse',
+    ]
+
+  self.mirror_src_url = [
+    'deb-src %s intrepid main restricted universe multiverse',
+    'deb-src %s intrepid-security main restricted universe multiverse',
+    'deb-src %s intrepid-updates main restricted universe multiverse',
+    'deb-src %s intrepid-backports main restricted universe multiverse',
+    'deb-src %s intrepid-proposed main restricted universe multiverse',
+    ]
+
+  self.template_values = {
+    'SourceLists':self.mirrors,
+    'IncludeSource':True,
+    'Output':''
+    }
+
+  self.render('templates/IntrepidSource.html')
+
+  def post(self):
+    iSel =self.param('mirror_id')
+    include_src = self.param('include_src')
+    output = []
+
+    url = self.mirros[self.mirrors[iSel])
+
+    for deb_url in self.mirror_url:
+      output.append( deb_url )
+
+    if include_src:
+      for deb_url in self.mirror_src_url:
+        output.append( deb_url )
+
+    result = ''
+    for o in output:
+      result = result+ os.linesep
+      
+    self.template_values = {
+    'SourceLists':self.mirrors,
+    'IncludeSource':True,
+    'Output': result
+    }
+    
+    
+
 def main():
   application = webapp.WSGIApplication([
     ('/admin', BlogAdmin),

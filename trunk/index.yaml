@@ -17,7 +17,7 @@ indexes:
   - name: date
     direction: desc
 
-# Used 513 times in query history.
+# Used 515 times in query history.
 - kind: Blog
   properties:
   - name: date
