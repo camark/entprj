@@ -1,24 +1,11 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+#!/usr/bin/env python #
+
 
 import wsgiref.handlers
 import sys
 import urllib
 import datetime
+import os
 
 sys.path.append('modules')
 sys.path.append('models')
@@ -220,10 +207,88 @@ class AboutMe(HelloBlog):
       'Categories':Categories,
       }
     self.render('templates/about_me.html')
+
+class IntrepidSourceList(HelloBlog):
+  def initialize(self,request,response):
+    HelloBlog.initialize(self,request,response)
+
+    self.mirrors={
+    'Archive.ubuntu.com更新服务器（欧洲，此为官方源，电信网通用户使用)':'http://archive.ubuntu.com/ubuntu/',
+    'Ubuntu.cn99.com更新服务器（江苏省常州市电信，推荐电信用户使用）':'http://ubuntu.cn99.com/ubuntu/',
+    'Mirrors.shlug.org更新服务器':'http://cn.archive.ubuntu.com/ubuntu',
+    'Mirror.lupaworld.com更新服务器（浙江省杭州市双线服务器）':'http://mirror.lupaworld.com/ubuntu',
+    '厦门大学更新服务器（教育网服务器）':'ftp://ubuntu.realss.cn/ubuntu/',
+    '成都市 电子科技大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://ubuntu.uestc.edu.cn/ubuntu/',
+    '成都市 电子科技大学更新服务器2':'http://ubuntu.dormforce.net/ubuntu/',
+    '上海市上海交通大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://ftp.sjtu.edu.cn/ubuntu/',
+    '中国科学技术大学更新服务器（教育网，推荐校园网和网通用户使用）':'http://debian.ustc.edu.cn/ubuntu/',
+    '中国台湾 台湾大学更新服务器':'http://ubuntu.csie.ntu.edu.tw/ubuntu/',
+    'mirror.rootguide.org更新服务器（上海市 电信）':'http://mirror.rootguide.org/ubuntu/',
+    '台湾的官方源速度也相当不错，有时甚至快于内地的':'http://tw.archive.ubuntu.com/ubuntu'
+    }
+
+    self.mirror_url=[
+    'deb %s intrepid main restricted universe multiverse',
+    'deb %s intrepid-security main restricted universe multiverse',
+    'deb %s intrepid-updates main restricted universe multiverse',
+    'deb %s intrepid-backports main restricted universe multiverse',
+    'deb %s intrepid-proposed main restricted universe multiverse',
+    ]
+
+    self.mirror_src_url = [
+    'deb-src %s intrepid main restricted universe multiverse',
+    'deb-src %s intrepid-security main restricted universe multiverse',
+    'deb-src %s intrepid-updates main restricted universe multiverse',
+    'deb-src %s intrepid-backports main restricted universe multiverse',
+    'deb-src %s intrepid-proposed main restricted universe multiverse',
+    ]
+    
+  def get(self):
+    mirrors = []
+    for key in self.mirrors.keys():
+      mirrors.append(key.decode('gbk'))
+      
+    self.template_values = {
+    'mirrors':mirrors,
+    'IncludeSource':True,
+    'Output':''
+    }
+
+    self.render('templates/IntrepidSource.html')
+
+  def post(self):
+    iSel = self.param('mirror_id').encode('gbk')
+
+    mirrors = []
+
+    mirror = self.mirrors[ iSel]
+
+    output = []
+
+    for deb_url in self.mirror_url:
+      output.append( deb_url % (mirror))
+
+    result = ''
+
+    for o in output:
+      result = result+o+'\n'
+      
+    for key in self.mirrors.keys():
+      mirrors.append(key.decode('gbk'))
+      
+    self.template_values = {
+    'mirrors':mirrors,
+    'IncludeSource':True,
+    'Output': result
+    }
+    self.render('templates/IntrepidSource.html')
+    
     
 def main():
   application = webapp.WSGIApplication([
     ('/', ListBlog),
+    ('/Intrepid', IntrepidSourceList),
+    ('/Intrepid/SourceGen', IntrepidSourceList),
     ('/page/\\d+',ListBlog),
     ('/page/\\d+/category/\\d+',ListBlog),
     ('/blog/show/\\d+',ItemBlog),
