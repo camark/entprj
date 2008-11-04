@@ -259,16 +259,26 @@ class IntrepidSourceList(HelloBlog):
   def post(self):
     iSel = self.param('mirror_id').encode('gbk')
 
+    include_src = self.param('include_src')
+
+    
     mirrors = []
 
     mirror = self.mirrors[ iSel]
 
     output = []
-
+    
     for deb_url in self.mirror_url:
       output.append( deb_url % (mirror))
 
-    result = ''
+    if include_src == 'True':
+      for deb_url in self.mirror_src_url:
+        output.append( deb_url % ( mirror ))
+
+    result = '#Ubuntu APT Source for %s ' % ( iSel.decode('gbk') ) + '\n'
+    result = result + '#Generate from http://superwar3fan.appsoot.com/Intrepid' + '\n'
+    result = result + '#Author Mail: gm8pleasure@gmail.com' + '\n'
+    result = result + '\n'
 
     for o in output:
       result = result+o+'\n'
