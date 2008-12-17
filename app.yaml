@@ -21,12 +21,15 @@ handlers:
 
 - url: /admin
   script: admin.py
+  login: admin
 
 - url: /admin/blog/.*
   script: admin.py
+  login: admin
 
 - url: /admin/category/.*
   script: admin.py
+  login: admin
   
 - url: /
   script: main.py
