@@ -36,6 +36,12 @@ handlers:
 - url: /view
   script: apis.py
 
+- url: /blog/rss
+  script: BlogRss.py
+
+- url: /blog/rss/category/.*
+  script: BlogRss.py
+
 - url: /blog/.*
   script: main.py
 
