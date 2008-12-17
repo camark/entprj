@@ -43,6 +43,8 @@ class MainHandler(webapp.RequestHandler):
 
 #Blog Show Function
 class ListBlog(HelloBlog):
+  
+     
   def get(self):
     page=0
     show_prev_page = False
