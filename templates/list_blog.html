@@ -9,9 +9,7 @@
 		<h2> <a href='/blog/show/{{ blog.key.id }}'>{{ blog.title }}</a></h2>
 		<span class="post-dates">Published at: {{ blog.date }} by {{blog.author}}</span>
 		<span class="post-comments"><a href="/blog/show/{{ blog.key }}#comments">{{ blog.comments.count}} Comment</a></span> 
-		{% if is_admin %}
-		<a href='/admin/blog/delete/{{ blog.key.id }}'>Delete</a>
-		{% endif %}
+		
 		<!--<span class="post-comments">Category:{{ blog.category.name }}</span>  -->
 	</div>
 	<div class="entry">
