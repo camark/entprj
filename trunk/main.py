@@ -1,5 +1,5 @@
 #!/usr/bin/env python #
-
+# -*- coding: UTF-8 -*-
 
 import wsgiref.handlers
 import sys
@@ -213,18 +213,18 @@ class IntrepidSourceList(HelloBlog):
     HelloBlog.initialize(self,request,response)
 
     self.mirrors={
-    'Archive.ubuntu.com¸üĞÂ·şÎñÆ÷£¨Å·ÖŞ£¬´ËÎª¹Ù·½Ô´£¬µçĞÅÍøÍ¨ÓÃ»§Ê¹ÓÃ)':'http://archive.ubuntu.com/ubuntu/',
-    'Ubuntu.cn99.com¸üĞÂ·şÎñÆ÷£¨½­ËÕÊ¡³£ÖİÊĞµçĞÅ£¬ÍÆ¼öµçĞÅÓÃ»§Ê¹ÓÃ£©':'http://ubuntu.cn99.com/ubuntu/',
-    'Mirrors.shlug.org¸üĞÂ·şÎñÆ÷':'http://cn.archive.ubuntu.com/ubuntu',
-    'Mirror.lupaworld.com¸üĞÂ·şÎñÆ÷£¨Õã½­Ê¡º¼ÖİÊĞË«Ïß·şÎñÆ÷£©':'http://mirror.lupaworld.com/ubuntu',
-    'ÏÃÃÅ´óÑ§¸üĞÂ·şÎñÆ÷£¨½ÌÓıÍø·şÎñÆ÷£©':'ftp://ubuntu.realss.cn/ubuntu/',
-    '³É¶¼ÊĞ µç×Ó¿Æ¼¼´óÑ§¸üĞÂ·şÎñÆ÷£¨½ÌÓıÍø£¬ÍÆ¼öĞ£Ô°ÍøºÍÍøÍ¨ÓÃ»§Ê¹ÓÃ£©':'http://ubuntu.uestc.edu.cn/ubuntu/',
-    '³É¶¼ÊĞ µç×Ó¿Æ¼¼´óÑ§¸üĞÂ·şÎñÆ÷2':'http://ubuntu.dormforce.net/ubuntu/',
-    'ÉÏº£ÊĞÉÏº£½»Í¨´óÑ§¸üĞÂ·şÎñÆ÷£¨½ÌÓıÍø£¬ÍÆ¼öĞ£Ô°ÍøºÍÍøÍ¨ÓÃ»§Ê¹ÓÃ£©':'http://ftp.sjtu.edu.cn/ubuntu/',
-    'ÖĞ¹ú¿ÆÑ§¼¼Êõ´óÑ§¸üĞÂ·şÎñÆ÷£¨½ÌÓıÍø£¬ÍÆ¼öĞ£Ô°ÍøºÍÍøÍ¨ÓÃ»§Ê¹ÓÃ£©':'http://debian.ustc.edu.cn/ubuntu/',
-    'ÖĞ¹úÌ¨Íå Ì¨Íå´óÑ§¸üĞÂ·şÎñÆ÷':'http://ubuntu.csie.ntu.edu.tw/ubuntu/',
-    'mirror.rootguide.org¸üĞÂ·şÎñÆ÷£¨ÉÏº£ÊĞ µçĞÅ£©':'http://mirror.rootguide.org/ubuntu/',
-    'Ì¨ÍåµÄ¹Ù·½Ô´ËÙ¶ÈÒ²Ïàµ±²»´í£¬ÓĞÊ±ÉõÖÁ¿ìÓÚÄÚµØµÄ':'http://tw.archive.ubuntu.com/ubuntu'
+    'Archive.ubuntu.comæ›´æ–°æœåŠ¡å™¨ï¼ˆæ¬§æ´²ï¼Œæ­¤ä¸ºå®˜æ–¹æºï¼Œç”µä¿¡ç½‘é€šç”¨æˆ·ä½¿ç”¨)':'http://archive.ubuntu.com/ubuntu/',
+    'Ubuntu.cn99.comæ›´æ–°æœåŠ¡å™¨ï¼ˆæ±Ÿè‹çœå¸¸å·å¸‚ç”µä¿¡ï¼Œæ¨èç”µä¿¡ç”¨æˆ·ä½¿ç”¨ï¼‰':'http://ubuntu.cn99.com/ubuntu/',
+    'Mirrors.shlug.orgæ›´æ–°æœåŠ¡å™¨':'http://cn.archive.ubuntu.com/ubuntu',
+    'Mirror.lupaworld.comæ›´æ–°æœåŠ¡å™¨ï¼ˆæµ™æ±Ÿçœæ­å·å¸‚åŒçº¿æœåŠ¡å™¨ï¼‰':'http://mirror.lupaworld.com/ubuntu',
+    'å¦é—¨å¤§å­¦æ›´æ–°æœåŠ¡å™¨ï¼ˆæ•™è‚²ç½‘æœåŠ¡å™¨ï¼‰':'ftp://ubuntu.realss.cn/ubuntu/',
+    'æˆéƒ½å¸‚ ç”µå­ç§‘æŠ€å¤§å­¦æ›´æ–°æœåŠ¡å™¨ï¼ˆæ•™è‚²ç½‘ï¼Œæ¨èæ ¡å›­ç½‘å’Œç½‘é€šç”¨æˆ·ä½¿ç”¨ï¼‰':'http://ubuntu.uestc.edu.cn/ubuntu/',
+    'æˆéƒ½å¸‚ ç”µå­ç§‘æŠ€å¤§å­¦æ›´æ–°æœåŠ¡å™¨2':'http://ubuntu.dormforce.net/ubuntu/',
+    'ä¸Šæµ·å¸‚ä¸Šæµ·äº¤é€šå¤§å­¦æ›´æ–°æœåŠ¡å™¨ï¼ˆæ•™è‚²ç½‘ï¼Œæ¨èæ ¡å›­ç½‘å’Œç½‘é€šç”¨æˆ·ä½¿ç”¨ï¼‰':'http://ftp.sjtu.edu.cn/ubuntu/',
+    'ä¸­å›½ç§‘å­¦æŠ€æœ¯å¤§å­¦æ›´æ–°æœåŠ¡å™¨ï¼ˆæ•™è‚²ç½‘ï¼Œæ¨èæ ¡å›­ç½‘å’Œç½‘é€šç”¨æˆ·ä½¿ç”¨ï¼‰':'http://debian.ustc.edu.cn/ubuntu/',
+    'ä¸­å›½å°æ¹¾ å°æ¹¾å¤§å­¦æ›´æ–°æœåŠ¡å™¨':'http://ubuntu.csie.ntu.edu.tw/ubuntu/',
+    'mirror.rootguide.orgæ›´æ–°æœåŠ¡å™¨ï¼ˆä¸Šæµ·å¸‚ ç”µä¿¡ï¼‰':'http://mirror.rootguide.org/ubuntu/',
+    'å°æ¹¾çš„å®˜æ–¹æºé€Ÿåº¦ä¹Ÿç›¸å½“ä¸é”™ï¼Œæœ‰æ—¶ç”šè‡³å¿«äºå†…åœ°çš„':'http://tw.archive.ubuntu.com/ubuntu'
     }
 
     self.mirror_url=[
@@ -246,7 +246,7 @@ class IntrepidSourceList(HelloBlog):
   def get(self):
     mirrors = []
     for key in self.mirrors.keys():
-      mirrors.append(key.decode('gbk'))
+      mirrors.append(key)
       
     self.template_values = {
     'mirrors':mirrors,
@@ -257,14 +257,14 @@ class IntrepidSourceList(HelloBlog):
     self.render('templates/IntrepidSource.html')
 
   def post(self):
-    iSel = self.param('mirror_id').encode('gbk')
+    iSel = self.param('mirror_id')
 
     include_src = self.param('include_src')
 
     
     mirrors = []
 
-    mirror = self.mirrors[ iSel]
+    mirror = self.mirrors[iSel.encode('utf8')]
 
     output = []
     
@@ -275,7 +275,7 @@ class IntrepidSourceList(HelloBlog):
       for deb_url in self.mirror_src_url:
         output.append( deb_url % ( mirror ))
 
-    result = '#Ubuntu APT Source for %s ' % ( iSel.decode('gbk') ) + '\n'
+    result = '#Ubuntu APT Source for %s ' % ( iSel ) + '\n'
     result = result + '#Generate from http://superwar3fan.appsoot.com/Intrepid' + '\n'
     result = result + '#Author Mail: gm8pleasure@gmail.com' + '\n'
     result = result + '\n'
@@ -284,7 +284,7 @@ class IntrepidSourceList(HelloBlog):
       result = result+o+'\n'
       
     for key in self.mirrors.keys():
-      mirrors.append(key.decode('gbk'))
+      mirrors.append(key)
       
     self.template_values = {
     'mirrors':mirrors,
