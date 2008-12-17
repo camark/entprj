@@ -12,6 +12,10 @@ handlers:
   static_files: images/rss.png
   upload: images/rss.png
 
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
 - url: /scripts
   static_dir: scripts
 
