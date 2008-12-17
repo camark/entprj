@@ -18,6 +18,7 @@ from category import *
 from time import gmtime,strftime
 
 class NewBlogHandler(HelloBlog):  
+    
   def get(self):
     if self.check_login(users.create_login_url(self.request.uri)):
       self.response.headers['Content-type']='text/html'

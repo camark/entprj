@@ -44,7 +44,9 @@ class MainHandler(webapp.RequestHandler):
 #Blog Show Function
 class ListBlog(HelloBlog):
   
-     
+  def initialize(self,request,response):
+    HelloBlog.initialize(self,request,response)
+    
   def get(self):
     page=0
     show_prev_page = False
