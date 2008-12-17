@@ -52,7 +52,7 @@ handlers:
   script: Olympic.py
 
 - url: /Intrepid
-  script: main.py
+  script: Intrepid.py
 
 - url: /Intrepid/.*
-  script: main.py
+  script: Intrepid.py
