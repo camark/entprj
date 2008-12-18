@@ -19,30 +19,28 @@ from time import gmtime,strftime
 
 class NewBlogHandler(HelloBlog):  
     
-  def get(self):
-    if self.check_login(users.create_login_url(self.request.uri)):
-      self.response.headers['Content-type']='text/html'
-      self.template_values={
-        'Categories':Category.all().fetch(1000)
-        }
-      self.render('templates/admin/new_blog.html')
+  def get(self):    
+    self.response.headers['Content-type']='text/html'
+    self.template_values={
+      'Categories':Category.all().fetch(1000)
+      }
+    self.render('templates/admin/new_blog.html')
        
 
-  def post(self):
-    if self.check_login(users.create_login_url(self.request.uri)):
-      _title=self.param('title')
-      _content=db.Text(self.param('contents'))
-      _category_id=self.param('category_id')
-      _category=Category.get(_category_id)
-      _blog=Blog(
-        title=_title,
-        content=_content,
-        category=_category,
-        author=users.get_current_user()
-        )
-      _blog.put()
+  def post(self):    
+    _title=self.param('title')
+    _content=db.Text(self.param('contents'))
+    _category_id=self.param('category_id')
+    _category=Category.get(_category_id)
+    _blog=Blog(
+      title=_title,
+      content=_content,
+      category=_category,
+      author=users.get_current_user()
+      )
+    _blog.put()
 
-      self.redirect('/')
+    self.redirect('/')
 
 class DeleteBlog(HelloBlog):
   def get(self):
@@ -58,21 +56,19 @@ class DeleteBlog(HelloBlog):
 
     
 class NewCategory(HelloBlog):
-  def get(self):
-    if self.check_admin(users.create_login_url(self.request.uri)):
-      self.render('templates/admin/new_category.html',{})
+  def get(self):    
+    self.render('templates/admin/new_category.html',{})
 
   def post(self):
-    if self.check_admin(users.create_login_url(self.request.uri)):
-      cat_name=self.param('cat_name')
+    cat_name=self.param('cat_name')
 
-      category=Category(name=cat_name)
+    category=Category(name=cat_name)
 
-      category.put()
-      if category.is_saved():
-        self.redirect('/admin/category/list')
-      else:
-        self.write('Save Error!')
+    category.put()
+    if category.is_saved():
+      self.redirect('/admin/category/list')
+    else:
+      self.write('Save Error!')
         
 class ListCategory(HelloBlog):
   def get(self):
